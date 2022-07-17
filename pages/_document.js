@@ -20,13 +20,13 @@ export default function Document() {
           href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
         />
-        <link rel="icon" href="/icon.jpg" />
         <meta name="theme-color" content={theme.colors.greenLime} />
         <meta property="og:image" content="/og.jpg" />
         <meta property="og:url" content="" />
         <meta property="og:site_name" content="" />
         <meta property="og:title" content="" />
         <meta property="og:description" content="" />
+        <link rel="icon" href="/image/icons.jpg" />
       </Head>
       <body>
         <Main />
