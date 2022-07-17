@@ -1,12 +1,13 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { firebaseConfigVal } from "../config";
 const firebaseConfig = {
-  apiKey: "AIzaSyDyLomb5hohlGICWfJBZxY_pijNgqWSVvo",
-  authDomain: "bkenglish-auth.firebaseapp.com",
-  projectId: "bkenglish-auth",
-  storageBucket: "bkenglish-auth.appspot.com",
-  messagingSenderId: "1091985353466",
-  appId: "1:1091985353466:web:fa5856b509c5ac514af743",
+  apiKey: firebaseConfigVal.API_KEY,
+  authDomain: firebaseConfigVal.AUTH_DOMAIN,
+  projectId: firebaseConfigVal.PROJECT_ID,
+  storageBucket: firebaseConfigVal.STORAGE_BUCKET,
+  messagingSenderId: firebaseConfigVal.MESSAGING_SENDER_ID,
+  appId: firebaseConfigVal.APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
