@@ -1,13 +1,12 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Layout } from "../components/Layout/Layout";
 import styles from "../styles/Home.module.css";
-import { AuthContext } from "./_app";
-import { useContext } from "react";
+import { useRouter } from "next/router";
+import { useAuth } from "../context/auth";
 
 export default function Home() {
-  const contextValue = useContext(AuthContext);
-  const logIn = (isLogin) => contextValue.authenticate(isLogin);
+  const { logout } = useAuth();
+  const { push } = useRouter();
   return (
     <div>
       <Head>
@@ -19,7 +18,14 @@ export default function Home() {
       <main>
         <Layout location="/">
           Logged in
-          <button onClick={() => logIn(false)}>Logout</button>
+          <button
+            onClick={() => {
+              logout();
+              push("/login");
+            }}
+          >
+            Logout
+          </button>
         </Layout>
       </main>
     </div>

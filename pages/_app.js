@@ -1,23 +1,11 @@
 import "../styles/globals.css";
-import { useState, createContext } from "react";
-import { theme } from "../constants";
-
-export const AuthContext = createContext({
-  isLogin: false,
-  authenticate: (isLogin) => {
-    isLogin = !isLogin;
-  },
-});
+import { AuthContextProvider } from "../context/auth";
 
 function MyApp({ Component, pageProps }) {
-  const [isLogin, setIsLogin] = useState(false);
-  const authenticate = () => {
-    setIsLogin(!isLogin);
-  };
   return (
-    <AuthContext.Provider value={{ isLogin, authenticate }}>
+    <AuthContextProvider>
       <Component {...pageProps} />
-    </AuthContext.Provider>
+    </AuthContextProvider>
   );
 }
 
