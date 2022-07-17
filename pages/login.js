@@ -18,12 +18,16 @@ const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  & > h1 {
-  }
   & > span {
     border-left: 1px solid ${theme.colors.black};
-    padding-left: 20px;
-    margin-left: 20px;
+    ${media.lg} {
+      padding-left: 20px;
+    }
+    padding-left: 10px;
+    ${media.lg} {
+      margin-left: 20px;
+    }
+    margin-left: 10px;
     color: ${theme.colors.black};
   }
 `;
@@ -40,14 +44,16 @@ const LoginContainer = styled.div`
   ${media.lg} {
     background-image: radial-gradient(
       125% 60% at top left,
+      ${theme.colors.white} 82%,
       ${theme.colors.greenLime} 82%,
-      ${theme.colors.white} 82%
+      ${theme.colors.green700} 160%
     );
   }
   background-image: radial-gradient(
     150% 45% at top left,
+    ${theme.colors.white} 82%,
     ${theme.colors.greenLime} 82%,
-    ${theme.colors.white} 82%
+    ${theme.colors.green700} 160%
   );
 `;
 
@@ -121,7 +127,7 @@ const Copyright = styled.span`
     font-size: 15px;
   }
   font-size: 14px;
-  color: ${theme.colors.green700};
+  color: ${theme.colors.white};
 `;
 
 export default function Login() {
