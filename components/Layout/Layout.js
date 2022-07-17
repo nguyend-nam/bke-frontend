@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState, useContext } from "react";
-import { AuthContext } from "../../pages/_app";
+import { useAuth } from "../../context/auth";
 
 const menuItems = [];
 
@@ -12,19 +11,14 @@ export const Layout = ({ children, location }) => {
     setIsSSR(false);
   }, []);
 
-  const contextValue = useContext(AuthContext);
-  const isLogin = contextValue.isLogin;
+  const { user, login, signup } = useAuth();
   const { push } = useRouter();
 
   useEffect(() => {
-    if (!isLogin) {
+    if (!user) {
       push(`/login`);
     }
-  }, [isLogin, push, location]);
+  }, [user, push]);
 
-  if (!isLogin) {
-    return null;
-  }
-
-  return <div>{children}</div>;
+  return <div>{user ? children : null}</div>;
 };

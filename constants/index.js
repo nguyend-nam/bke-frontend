@@ -8,7 +8,7 @@ export const theme = {
     red700: "#FF0063",
     white: "#FFF",
     black: "#000",
-    gray: "#bbb",
+    gray: "#b0b0b0",
   },
 };
 

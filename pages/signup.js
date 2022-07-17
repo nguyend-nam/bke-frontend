@@ -107,34 +107,6 @@ const InputLabel = styled.label`
   color: ${theme.colors.green700};
 `;
 
-const SocialLoginWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  ${media.lg} {
-    margin-bottom: 25px;
-  }
-  margin-bottom: 20px;
-  & > button {
-    width: 50% !important;
-    background-color: ${theme.colors.greenLime} !important;
-    & > * {
-      color: ${theme.colors.green700} !important;
-    }
-  }
-  & > button:first-child {
-    ${media.lg} {
-      margin-right: 12.5px;
-    }
-    margin-right: 10px;
-  }
-  & > button:last-child {
-    ${media.lg} {
-      margin-left: 12.5px;
-    }
-    margin-left: 10px;
-  }
-`;
-
 const LoginButtonWrapper = styled.div`
   ${media.lg} {
     margin-bottom: 25px;
@@ -142,7 +114,14 @@ const LoginButtonWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-const DividerWrapper = styled(LoginButtonWrapper)``;
+const LoginOptionWrapper = styled.div`
+  color: ${theme.colors.gray};
+  & a {
+    font-weight: 600;
+    cursor: pointer;
+    color: ${theme.colors.green700};
+  }
+`;
 
 const Copyright = styled.span`
   position: fixed;
@@ -155,15 +134,6 @@ const Copyright = styled.span`
   color: ${theme.colors.white};
 `;
 
-const SignupOptionWrapper = styled.div`
-  color: ${theme.colors.gray};
-  & a {
-    font-weight: 600;
-    cursor: pointer;
-    color: ${theme.colors.green700};
-  }
-`;
-
 export default function Login() {
   const [isSSR, setIsSSR] = useState(true);
 
@@ -173,7 +143,7 @@ export default function Login() {
 
   const { push } = useRouter();
 
-  const { user, login } = useAuth();
+  const { user, signup } = useAuth();
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -184,20 +154,14 @@ export default function Login() {
   const emailLabelRef = useRef();
   const passwordLabelRef = useRef();
 
-  const handleLogin = async (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
 
     try {
-      await login(data.email, data.password);
+      await signup(data.email, data.password);
       push("/");
     } catch (err) {
       console.log(err);
-      if (!user) {
-        emailLabelRef.current.innerText = "Email (User not found)";
-        emailLabelRef.current.style.color = theme.colors.red700;
-        passwordLabelRef.current.innerText = "Password (User not found)";
-        passwordLabelRef.current.style.color = theme.colors.red700;
-      }
     }
   };
 
@@ -205,14 +169,14 @@ export default function Login() {
     !isSSR && (
       <>
         <Head>
-          <title>Login - BKEnglish</title>
-          <meta name="description" content="Login - BKEnglish" />
+          <title>Signup - BKEnglish</title>
+          <meta name="description" content="Signup - BKEnglish" />
           <link rel="icon" href="/image/icons.jpg" />
         </Head>
-        <LoginContainer onSubmit={handleLogin}>
+        <LoginContainer onSubmit={handleSignup}>
           <LogoWrapper>
             <Logo />
-            <span>Login</span>
+            <span>Signup</span>
           </LogoWrapper>
           <LoginForm autoComplete="off">
             <InputField>
@@ -268,28 +232,15 @@ export default function Login() {
                   }
                 }}
               >
-                <span>Login</span>
+                <span>Signup</span>
               </Button>
             </LoginButtonWrapper>
-            <DividerWrapper>
-              <TextDivider>
-                <span>Or login with...</span>
-              </TextDivider>
-            </DividerWrapper>
-            <SocialLoginWrapper>
-              <Button>
-                <FontAwesomeIcon icon={faGoogle} />
-              </Button>
-              <Button>
-                <FontAwesomeIcon icon={faFacebookF} />
-              </Button>
-            </SocialLoginWrapper>
-            <SignupOptionWrapper>
+            <LoginOptionWrapper>
               <span>
-                Want another option?{" "}
-                <a onClick={() => push("/signup")}>Register</a> an account.
+                Or <a onClick={() => push("/login")}>Login</a> with your
+                registered account, Google or Facebook.
               </span>
-            </SignupOptionWrapper>
+            </LoginOptionWrapper>
           </LoginForm>
           <Copyright>&copy; 2022 BKEnglish. All rights reserved.</Copyright>
         </LoginContainer>
