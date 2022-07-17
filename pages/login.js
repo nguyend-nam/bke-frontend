@@ -11,6 +11,8 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 // Prevent fontawesome from adding its CSS since we did it manually above:
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false; /* eslint-disable import/first */
+import { TextDivider } from "../components/TextDivider/TextDivider";
+import { Button } from "../components/Button/Button";
 
 const LogoWrapper = styled.div`
   display: flex;
@@ -27,7 +29,7 @@ const LogoWrapper = styled.div`
 `;
 
 const LoginContainer = styled.div`
-  animation: ${appear} 0.25s linear forwards;
+  animation: ${appear} 0.5s linear forwards;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -78,7 +80,7 @@ const InputText = styled.input`
     border: 1px solid ${theme.colors.greenLime};
   }
   ::placeholder {
-    color: ${theme.colors.gray}8;
+    color: ${theme.colors.gray};
   }
 `;
 
@@ -91,28 +93,6 @@ const InputLabel = styled.label`
   background-color: ${theme.colors.white};
   padding: 0 5px;
   color: ${theme.colors.green700};
-`;
-
-const LoginButton = styled.button`
-  cursor: pointer;
-  width: 100%;
-  border: none;
-  outline: none;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: ${theme.colors.green700};
-  transition: 0.2s ease-in-out;
-  & > * {
-    font-size: 18px !important;
-    color: ${theme.colors.white};
-  }
-  & > span {
-    font-size: 16px;
-  }
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 3px 12px ${theme.colors.greenLime}88;
-  }
 `;
 
 const SocialLoginWrapper = styled.div`
@@ -161,72 +141,85 @@ export default function Login() {
   const passwordLabelRef = useRef();
 
   return (
-    <>
-      <Head>
-        <title>Login - BKEnglish</title>
-        <meta name="description" content="Login - BKEnglish" />
-        <link rel="icon" href="/image/icons.jpg" />
-      </Head>
-      <LoginContainer>
-        <LogoWrapper>
-          <Logo />
-          <span>Login</span>
-        </LogoWrapper>
-        <LoginForm>
-          <InputField>
-            <InputLabel ref={usernameLabelRef}>Username</InputLabel>
-            <InputText
-              ref={usernameRef}
-              type="text"
-              placeholder="Input username"
-              required
-            />
-          </InputField>
-          <InputField>
-            <InputLabel ref={passwordLabelRef}>Password</InputLabel>
-            <InputText
-              ref={passwordRef}
-              type="text"
-              placeholder="Input password"
-              required
-            />
-          </InputField>
-          <LoginButton
-            style={{ marginBottom: 30 }}
-            onClick={() => {
-              if (
-                (usernameRef.current.value === "a" ||
-                  usernameRef.current.value === "A") &&
-                (passwordRef.current.value === "a" ||
-                  passwordRef.current.value === "A")
-              ) {
-                logIn(true);
-                push(`/`);
-              } else {
-                if (usernameRef.current.value === "") {
-                  usernameLabelRef.current.innerText = "Username is required";
-                  usernameLabelRef.current.style.color = theme.colors.red700;
-                }
-                if (passwordRef.current.value === "") {
-                  passwordLabelRef.current.innerText = "Password is required";
-                  passwordLabelRef.current.style.color = theme.colors.red700;
-                }
-              }
-            }}
-          >
+    !isSSR && (
+      <>
+        <Head>
+          <title>Login - BKEnglish</title>
+          <meta name="description" content="Login - BKEnglish" />
+          <link rel="icon" href="/image/icons.jpg" />
+        </Head>
+        <LoginContainer>
+          <LogoWrapper>
+            <Logo />
             <span>Login</span>
-          </LoginButton>
-          <SocialLoginWrapper>
-            <LoginButton>
-              <FontAwesomeIcon icon={faGoogle} />
-            </LoginButton>
-            <LoginButton>
-              <FontAwesomeIcon icon={faFacebookF} />
-            </LoginButton>
-          </SocialLoginWrapper>
-        </LoginForm>
-        <Copyright>&copy; 2022 BKEnglish. All rights reserved.</Copyright>
-      </LoginContainer>
-    </>
+          </LogoWrapper>
+          <LoginForm>
+            <InputField>
+              <InputLabel ref={usernameLabelRef}>Username</InputLabel>
+              <InputText
+                ref={usernameRef}
+                type="text"
+                placeholder="Input username"
+                required
+              />
+            </InputField>
+            <InputField>
+              <InputLabel ref={passwordLabelRef}>Password</InputLabel>
+              <InputText
+                ref={passwordRef}
+                type="text"
+                placeholder="Input password"
+                required
+              />
+            </InputField>
+            <div style={{ marginBottom: 30 }}>
+              <Button
+                style={{ marginBottom: 30 }}
+                onClick={() => {
+                  if (
+                    (usernameRef.current.value === "a" ||
+                      usernameRef.current.value === "A") &&
+                    (passwordRef.current.value === "a" ||
+                      passwordRef.current.value === "A")
+                  ) {
+                    logIn(true);
+                    push(`/`);
+                  } else {
+                    if (usernameRef.current.value === "") {
+                      usernameLabelRef.current.innerText =
+                        "Username is required";
+                      usernameLabelRef.current.style.color =
+                        theme.colors.red700;
+                    }
+                    if (passwordRef.current.value === "") {
+                      passwordLabelRef.current.innerText =
+                        "Password is required";
+                      passwordLabelRef.current.style.color =
+                        theme.colors.red700;
+                    }
+                  }
+                }}
+              >
+                <span>Login</span>
+              </Button>
+            </div>
+            <div style={{ marginBottom: 30 }}>
+              <TextDivider margin="0 0 30px 0">
+                <span>or login with...</span>
+              </TextDivider>
+            </div>
+            <SocialLoginWrapper>
+              <Button>
+                <FontAwesomeIcon icon={faGoogle} />
+              </Button>
+              <Button>
+                <FontAwesomeIcon icon={faFacebookF} />
+              </Button>
+            </SocialLoginWrapper>
+          </LoginForm>
+          <Copyright>&copy; 2022 BKEnglish. All rights reserved.</Copyright>
+        </LoginContainer>
+      </>
+    )
   );
 }
