@@ -89,9 +89,9 @@ const InputLabel = styled.label`
   font-size: 14px;
   position: absolute;
   top: -8px;
-  left: 12px;
+  left: 11px;
   background-color: ${theme.colors.white};
-  padding: 0 5px;
+  padding: 0 6px;
   color: ${theme.colors.green700};
 `;
 
@@ -190,12 +190,20 @@ export default function Login() {
                         "Username is required";
                       usernameLabelRef.current.style.color =
                         theme.colors.red700;
+                    } else {
+                      usernameLabelRef.current.innerText = "Username";
+                      usernameLabelRef.current.style.color =
+                        theme.colors.green700;
                     }
                     if (passwordRef.current.value === "") {
                       passwordLabelRef.current.innerText =
                         "Password is required";
                       passwordLabelRef.current.style.color =
                         theme.colors.red700;
+                    } else {
+                      passwordLabelRef.current.innerText = "Password";
+                      passwordLabelRef.current.style.color =
+                        theme.colors.green700;
                     }
                   }
                 }}
