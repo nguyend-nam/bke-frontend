@@ -1,4 +1,4 @@
-import { theme, size, media } from "../constants";
+import { theme, size, media, appear } from "../constants";
 import styled from "styled-components";
 import { AuthContext } from "./_app";
 import { useState, useEffect, useContext, useRef } from "react";
@@ -6,6 +6,10 @@ import { useRouter } from "next/router";
 import { Logo } from "../components/Logo/Logo";
 import { faGoogle, faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+// Prevent fontawesome from adding its CSS since we did it manually above:
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false; /* eslint-disable import/first */
 
 const LogoWrapper = styled.div`
   display: flex;
@@ -22,6 +26,7 @@ const LogoWrapper = styled.div`
 `;
 
 const LoginContainer = styled.div`
+  animation: ${appear} 0.25s linear forwards;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -187,11 +192,11 @@ export default function Login() {
               logIn(true);
               push(`/`);
             } else {
-              if (usernameRef.current.value !== "a") {
+              if (usernameRef.current.value === "") {
                 usernameLabelRef.current.innerText = "Username is required";
                 usernameLabelRef.current.style.color = theme.colors.red700;
               }
-              if (passwordRef.current.value !== "a") {
+              if (passwordRef.current.value === "") {
                 passwordLabelRef.current.innerText = "Password is required";
                 passwordLabelRef.current.style.color = theme.colors.red700;
               }
