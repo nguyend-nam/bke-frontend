@@ -58,6 +58,8 @@ const LoginForm = styled.div`
   }
   width: ${size.form.width_sm};
   padding: 40px 30px;
+  position: static;
+  z-index: 100;
 `;
 
 const InputField = styled.div`
@@ -193,8 +195,10 @@ export default function Login() {
             style={{ marginBottom: 30 }}
             onClick={() => {
               if (
-                usernameRef.current.value === "a" &&
-                passwordRef.current.value === "a"
+                (usernameRef.current.value === "a" ||
+                  usernameRef.current.value === "A") &&
+                (passwordRef.current.value === "a" ||
+                  passwordRef.current.value === "A")
               ) {
                 logIn(true);
                 push(`/`);

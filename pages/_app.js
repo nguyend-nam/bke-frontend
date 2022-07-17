@@ -17,11 +17,6 @@ function MyApp({ Component, pageProps }) {
   return (
     <AuthContext.Provider value={{ isLogin, authenticate }}>
       <Component {...pageProps} />
-      <style jsx global>{`
-        body {
-          background: ${theme.colors.greenLime};
-        }
-      `}</style>
     </AuthContext.Provider>
   );
 }
