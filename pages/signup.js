@@ -232,7 +232,7 @@ export default function Login() {
                   }
                 }}
               >
-                <span>Sign Up</span>
+                <span>Sign up</span>
               </Button>
             </LoginButtonWrapper>
             <LoginOptionWrapper>

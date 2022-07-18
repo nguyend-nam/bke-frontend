@@ -279,7 +279,7 @@ export default function Login() {
                   }
                 }}
               >
-                <span>Log In</span>
+                <span>Log in</span>
               </Button>
             </LoginButtonWrapper>
             <DividerWrapper>
