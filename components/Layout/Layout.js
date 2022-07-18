@@ -5,13 +5,7 @@ import { useAuth } from "../../context/auth";
 const menuItems = [];
 
 export const Layout = ({ children, location }) => {
-  const [isSSR, setIsSSR] = useState(true);
-
-  useEffect(() => {
-    setIsSSR(false);
-  }, []);
-
-  const { user, login, signup } = useAuth();
+  const { user } = useAuth();
   const { push } = useRouter();
 
   useEffect(() => {
