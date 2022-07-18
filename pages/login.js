@@ -173,7 +173,7 @@ export default function Login() {
 
   const { push } = useRouter();
 
-  const { user, login } = useAuth();
+  const { user, login, loginGoogle } = useAuth();
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -198,6 +198,17 @@ export default function Login() {
         passwordLabelRef.current.innerText = "Password (User not found)";
         passwordLabelRef.current.style.color = theme.colors.red700;
       }
+    }
+  };
+
+  const handleGoogleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      await loginGoogle();
+      push("/");
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -277,7 +288,7 @@ export default function Login() {
               </TextDivider>
             </DividerWrapper>
             <SocialLoginWrapper>
-              <Button>
+              <Button onClick={handleGoogleLogin}>
                 <FontAwesomeIcon icon={faGoogle} />
               </Button>
               <Button>
