@@ -26,7 +26,7 @@ export default function Document() {
         <meta property="og:site_name" content="" />
         <meta property="og:title" content="" />
         <meta property="og:description" content="" />
-        <link rel="icon" href="/./image/icons.jpg" />
+        <link rel="icon" href="/image/icons.jpg" />
       </Head>
       <body>
         <Main />

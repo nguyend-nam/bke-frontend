@@ -15,7 +15,7 @@ const Title = styled.h1`
 export const Logo = () => {
   return (
     <>
-      <Image src="/./image/icons.jpg" alt="logo" width="35px" height="35px" />
+      <Image src={"/image/icons.jpg"} alt="logo" width={35} height={35} />
       <Title>BKEnglish</Title>
     </>
   );

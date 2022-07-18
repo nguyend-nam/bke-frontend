@@ -218,7 +218,7 @@ export default function Login() {
         <Head>
           <title>Login - BKEnglish</title>
           <meta name="description" content="Login - BKEnglish" />
-          <link rel="icon" href="/./image/icons.jpg" />
+          <link rel="icon" href="/image/icons.jpg" />
         </Head>
         <LoginContainer onSubmit={handleLogin}>
           <LogoWrapper>

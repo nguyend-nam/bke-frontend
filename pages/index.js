@@ -20,7 +20,7 @@ export default function Home() {
         <Head>
           <title>BKEnglish</title>
           <meta name="description" content="BKEnglish" />
-          <link rel="icon" href="/./image/icons.jpg" />
+          <link rel="icon" href="/image/icons.jpg" />
         </Head>
 
         <main>
