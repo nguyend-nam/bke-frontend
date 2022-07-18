@@ -279,12 +279,12 @@ export default function Login() {
                   }
                 }}
               >
-                <span>Login</span>
+                <span>Log In</span>
               </Button>
             </LoginButtonWrapper>
             <DividerWrapper>
               <TextDivider>
-                <span>Or login with...</span>
+                <span>Or log in with...</span>
               </TextDivider>
             </DividerWrapper>
             <SocialLoginWrapper>

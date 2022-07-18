@@ -232,12 +232,12 @@ export default function Login() {
                   }
                 }}
               >
-                <span>Signup</span>
+                <span>Sign Up</span>
               </Button>
             </LoginButtonWrapper>
             <LoginOptionWrapper>
               <span>
-                Or <a onClick={() => push("/login")}>Login</a> with your
+                Or <a onClick={() => push("/login")}>Log in</a> with your
                 registered account, Google or Facebook.
               </span>
             </LoginOptionWrapper>
